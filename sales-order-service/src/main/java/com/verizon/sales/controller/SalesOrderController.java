@@ -62,7 +62,6 @@ public class SalesOrderController {
     public void deleteOrder(@PathVariable Long id) {
         salesOrderService.deleteOrder(id);
     }
-
     // ✅ PUT: Update existing order
     @PutMapping("/{id}")
     public ResponseEntity<SalesOrder> updateOrder(@PathVariable Long id, @RequestBody SalesOrder updatedOrder) {
@@ -82,7 +81,6 @@ public class SalesOrderController {
         if (order == null) return "Order not found.";
         String customer = customerClient.getCustomerById(order.getCustomerId());
         String item = itemClient.getItemById(order.getId());
-
         return "Customer: " + customer + " | Item: " + item + " | Quantity: " + order.getQuantity();
     }
 }

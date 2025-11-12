@@ -57,7 +57,6 @@ public class SalesOrderController {
         return ResponseEntity.ok(response);
     }
 
-
     // ✅ DELETE: Delete by ID
     @DeleteMapping("/{id}")
     public void deleteOrder(@PathVariable Long id) {
@@ -76,13 +75,11 @@ public class SalesOrderController {
                 })
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
-
     // (Optional) BONUS DETAILS ENDPOINT - REMOVE IF NOT NEEDED
     @GetMapping("/{id}")
     public String getOrderDetails(@PathVariable Long id) {
         SalesOrder order = salesOrderService.getOrderById(id);
         if (order == null) return "Order not found.";
-
         String customer = customerClient.getCustomerById(order.getCustomerId());
         String item = itemClient.getItemById(order.getId());
 
